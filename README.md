@@ -21,6 +21,24 @@ bundle install
 rails g mailboxer:install
 rake db:migrate
 ```
+## user mailbox connect app/models/user.rb
+```ruby
+class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  acts_as_messageable
+  def name
+    "User #{id}"
+  end
+  
+  def mailboxer_email(object)
+    nil
+  end
+end
+
+```
 ## route setting config/routes.rb
 ```ruby
 devise_for :users
