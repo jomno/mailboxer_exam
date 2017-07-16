@@ -1,22 +1,27 @@
 # hello gorails
 
-## Gemfile
+## Gemfile 
 ```ruby
 gem 'devise'
 gem 'mailboxer'
 ```
-## devise install
+## devise install bash
 ```bash
 rails g devise:install
 rails g devise user
 ```
-## mailboxer setup
+## devise setting db/seeds.rb 가상의 유저 생성
+```ruby
+User.create(email: 'man@gmail.com',password: 'password',password_confirmation: 'password')
+User.create(email: 'woman@gmail.com',password: 'password',password_confirmation: 'password')
+```
+## mailboxer setup bash
 ```bash
 bundle install
 rails g mailboxer:install
 rake db:migrate
 ```
-## route.rb
+## route setting config/routes.rb
 ```ruby
 devise_for :users
   resources :conversations do
